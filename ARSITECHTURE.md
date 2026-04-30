@@ -1,13 +1,28 @@
-# Dokumentasi Arsitektur Proyek
+# ARCHITECTURE.md — Pola Arsitektur Proyek Tim
 
-## Struktur Folder Utama
-Proyek ini menggunakan struktur folder terpusat di dalam `/src` untuk menjaga kerapian.
+## Pola yang Digunakan
+Proyek ini menggunakan pola arsitektur **MVC (Model-View-Controller)**.
 
-## Detail Folder:
-1. **src/models/**: Digunakan oleh Backend untuk mendefinisikan struktur data.
-2. **src/controllers/**: Digunakan oleh Backend untuk mengatur logika program.
-3. **src/views/**: Digunakan oleh Frontend untuk menyimpan file tampilan (HTML/CSS).
+## Struktur Folder
+project/
+├── models/          # Logika bisnis & koneksi database (Backend)
+├── views/           # Tampilan antarmuka pengguna (Frontend)
+├── controllers/     # Penghubung Model dan View
+├── public/          # Asset statis (CSS, JS, gambar)
+├── app.py           # Entry point aplikasi
+├── .gitignore       # File yang dikecualikan dari Git
+└── ARCHITECTURE.md  # Dokumen ini
+## Aturan Tim
+1. Backend Developer HANYA mengubah folder `models/` dan `controllers/`
+2. Frontend Developer HANYA mengubah folder `views/` dan `public/`
+3. Perintah SQL/query database HANYA boleh ada di folder `models/`
+4. Setiap perubahan wajib melalui Pull Request sebelum di-merge ke `development`
+5. File kompilasi (`__pycache__`, `.exe`) wajib ada di `.gitignore`
 
-## Alur Kerja Git:
-- Setiap fitur dikerjakan di branch `feat-`.
-- Semua perubahan digabungkan ke branch `development` melalui Pull Request.
+## Branch Strategy
+| Branch | Fungsi |
+|--------|--------|
+| `main` | Kode produksi yang stabil |
+| `development` | Integrasi fitur dari semua developer |
+| `feat-be-*` | Branch khusus Backend Developer |
+| `feat-fe-*` | Branch khusus Frontend Developer |
