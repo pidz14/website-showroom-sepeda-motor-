@@ -43,9 +43,9 @@ Target pengguna:
 
 | Role | Nama | Tanggung Jawab Utama |
 |---|---|---|
-| Product Lead | [Ahmad Hafidz Muhaimin] | Koordinasi tim, mockup UI, buat DESIGN.md, moderasi API Contract |
-| Backend Developer | [Wilda Putra Cahya Ramadan] | ERD, database schema, controller CI4, REST API endpoint |
-| Frontend Developer | [Jonatan Arya Santosa] | Halaman HTML/CSS, integrasi ke CI4 Views, komponen UI |
+| Product Lead | [Nama PL] | Koordinasi tim, mockup UI, buat DESIGN.md, moderasi API Contract |
+| Backend Developer | [Nama BE] | ERD, database schema, controller CI4, REST API endpoint |
+| Frontend Developer | [Nama FE] | Halaman HTML/CSS, integrasi ke CI4 Views, komponen UI |
 
 ---
 
