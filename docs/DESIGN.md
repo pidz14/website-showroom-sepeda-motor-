@@ -116,7 +116,7 @@ website-showroom-sepeda-motor-/
 
 ## 🎨 Mockup UI (Figma/Canva)
 
-> Link Mockup UI: **[Klik di sini untuk membuka desain →]([https://www.figma.com/file/LINK-FIGMA-KELOMPOK](https://www.figma.com/proto/CAoR8rgZlVkQO74x4W899c/ui_mockup?node-id=1-2&t=jP19oA1MlgQb02GW-6))**
+> Link Mockup UI: **[Klik di sini untuk membuka desain →]([https://www.figma.com/proto/CAoR8rgZlVkQO74x4W899c/ui_mockup?node-id=1-2&t=jP19oA1MlgQb02GW-6])**
 
 Halaman yang sudah didesain:
 - [x] Landing Page
