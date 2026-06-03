@@ -262,6 +262,11 @@ a {
     font-weight: 700;
 }
 
+.motor-card__meta {
+    color: var(--color-ink-soft);
+    font-size: 14px;
+}
+
 .motor-card--catalog {
     min-height: 390px;
 }
@@ -343,6 +348,46 @@ a {
 
 .catalog-content {
     min-height: 625px;
+}
+
+.catalog-status,
+.detail-state,
+.state-message {
+    padding: 14px 16px;
+    color: var(--color-ink-soft);
+    background: #f9fafb;
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+}
+
+.catalog-status {
+    margin-bottom: 18px;
+}
+
+.catalog-status--success,
+.detail-state--success {
+    color: var(--color-success);
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.catalog-status--error,
+.detail-state--error,
+.state-message--error {
+    color: var(--color-primary-dark);
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.detail-state--loading {
+    color: var(--color-warning);
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.state-message--empty {
+    color: var(--color-ink-soft);
+    background: var(--color-muted);
 }
 
 .catalog-toolbar {
