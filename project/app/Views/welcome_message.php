@@ -39,31 +39,8 @@
                     <p class="section-kicker">Motor Unggulan</p>
                     <h2 id="featured-title">Pilihan siap dilihat hari ini</h2>
                 </div>
-                <div class="motor-grid motor-grid--featured">
-                    <article class="motor-card">
-                        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2022%20Honda%20PCX%20160%20Gray%20Black.jpg" alt="Honda PCX 160">
-                        <div class="motor-card__body">
-                            <span class="status status--ready">Tersedia</span>
-                            <h3>Honda PCX 160</h3>
-                            <p>Rp 35.000.000</p>
-                        </div>
-                    </article>
-                    <article class="motor-card">
-                        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2020%20Yamaha%20NMAX%20155%20ABS%20(20200810)%2001.jpg" alt="Yamaha NMAX 155 ABS">
-                        <div class="motor-card__body">
-                            <span class="status status--ready">Tersedia</span>
-                            <h3>Yamaha NMAX</h3>
-                            <p>Rp 31.500.000</p>
-                        </div>
-                    </article>
-                    <article class="motor-card">
-                        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2022%20Honda%20Vario%20160%20ABS%20(20221105).jpg" alt="Honda Vario 160 ABS">
-                        <div class="motor-card__body">
-                            <span class="status status--limited">Unit Terbatas</span>
-                            <h3>Honda Vario</h3>
-                            <p>Rp 26.000.000</p>
-                        </div>
-                    </article>
+                <div class="motor-grid motor-grid--featured" data-featured-grid>
+                    <div class="state-message">Memuat motor unggulan...</div>
                 </div>
             </section>
         </section>
@@ -74,22 +51,20 @@
                     <h2>Filter</h2>
                     <label>
                         Merek
-                        <select>
-                            <option>Semua Merek</option>
-                            <option>Honda</option>
-                            <option>Yamaha</option>
+                        <select data-filter-brand>
+                            <option value="">Semua Merek</option>
                         </select>
                     </label>
                     <label>
                         Harga
-                        <select>
-                            <option>Semua Harga</option>
-                            <option>Di bawah Rp 30 juta</option>
-                            <option>Rp 30 juta ke atas</option>
+                        <select data-filter-price>
+                            <option value="">Semua Harga</option>
+                            <option value="under-30000000">Di bawah Rp 30 juta</option>
+                            <option value="over-30000000">Rp 30 juta ke atas</option>
                         </select>
                     </label>
                     <label class="checkbox-row">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" data-filter-available checked>
                         Stok tersedia
                     </label>
                 </aside>
@@ -102,29 +77,14 @@
                         </div>
                         <label class="search-box">
                             <span>Cari</span>
-                            <input type="search" placeholder="Cari motor..." aria-label="Cari motor">
+                            <input type="search" placeholder="Cari motor..." aria-label="Cari motor" data-search-input>
                         </label>
                     </div>
 
-                    <div class="motor-grid motor-grid--catalog">
-                        <article class="motor-card motor-card--catalog">
-                            <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2022%20Honda%20PCX%20160%20Gray%20Black.jpg" alt="Honda PCX 160">
-                            <div class="motor-card__body">
-                                <span class="status status--ready">Tersedia</span>
-                                <h2>Honda PCX</h2>
-                                <p>Rp 35.000.000</p>
-                                <a class="ghost-button" href="#detail" data-page-link="detail">Lihat Detail</a>
-                            </div>
-                        </article>
-                        <article class="motor-card motor-card--catalog">
-                            <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2020%20Yamaha%20NMAX%20155%20ABS%20(20200810)%2001.jpg" alt="Yamaha NMAX 155 ABS">
-                            <div class="motor-card__body">
-                                <span class="status status--ready">Tersedia</span>
-                                <h2>NMAX</h2>
-                                <p>Rp 31.500.000</p>
-                                <a class="ghost-button" href="#detail" data-page-link="detail">Lihat Detail</a>
-                            </div>
-                        </article>
+                    <div class="catalog-status" data-catalog-status role="status" aria-live="polite">Memuat katalog motor...</div>
+
+                    <div class="motor-grid motor-grid--catalog" data-catalog-grid>
+                        <div class="state-message">Mengambil data dari API...</div>
                     </div>
                 </div>
             </div>
@@ -133,25 +93,26 @@
         <section class="page-shell" id="detail" data-page="detail" aria-labelledby="detail-title">
             <div class="detail-top">
                 <figure class="detail-photo">
-                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2022%20Honda%20PCX%20160%20Gray%20Black.jpg" alt="Foto Honda PCX 160">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2022%20Honda%20PCX%20160%20Gray%20Black.jpg" alt="Foto motor" data-detail-image>
                 </figure>
 
                 <div class="detail-summary">
                     <p class="section-kicker">Detail Motor</p>
-                    <h1 id="detail-title">Honda PCX 160</h1>
-                    <p class="detail-price">Rp 35.000.000</p>
+                    <h1 id="detail-title" data-detail-title>Pilih motor dari katalog</h1>
+                    <p class="detail-price" data-detail-price>-</p>
+                    <p class="detail-state" data-detail-state role="status" aria-live="polite">Detail akan tampil setelah tombol Lihat Detail dipilih.</p>
                     <dl class="spec-list">
                         <div>
                             <dt>Tahun</dt>
-                            <dd>2022</dd>
+                            <dd data-detail-year>-</dd>
                         </div>
                         <div>
-                            <dt>Transmisi</dt>
-                            <dd>Matic</dd>
+                            <dt>Tipe</dt>
+                            <dd data-detail-type>-</dd>
                         </div>
                         <div>
                             <dt>Status</dt>
-                            <dd><span class="status status--ready">Tersedia</span></dd>
+                            <dd data-detail-status>-</dd>
                         </div>
                     </dl>
                     <a class="primary-button" href="#test-drive">Ajukan Test Drive</a>
@@ -160,19 +121,19 @@
 
             <section class="description-box" aria-labelledby="desc-title">
                 <h2 id="desc-title">Deskripsi &amp; Spesifikasi</h2>
-                <p>Honda PCX 160 cocok untuk penggunaan harian dan perjalanan jarak menengah. Unit tampil bersih, mesin responsif, serta siap dijadwalkan untuk pengecekan langsung di showroom.</p>
+                <p data-detail-description>Data detail motor akan dimuat dari endpoint backend.</p>
                 <div class="spec-table" role="table" aria-label="Spesifikasi Honda PCX 160">
                     <div role="row">
-                        <span role="cell">Kapasitas Mesin</span>
-                        <strong role="cell">160 cc</strong>
+                        <span role="cell">Merek</span>
+                        <strong role="cell" data-detail-brand>-</strong>
                     </div>
                     <div role="row">
-                        <span role="cell">Bahan Bakar</span>
-                        <strong role="cell">Bensin</strong>
+                        <span role="cell">Stok</span>
+                        <strong role="cell" data-detail-stock>-</strong>
                     </div>
                     <div role="row">
-                        <span role="cell">Warna</span>
-                        <strong role="cell">Gray Black</strong>
+                        <span role="cell">Harga</span>
+                        <strong role="cell" data-detail-price-table>-</strong>
                     </div>
                 </div>
             </section>
