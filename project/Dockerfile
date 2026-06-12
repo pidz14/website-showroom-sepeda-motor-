@@ -1,7 +1,7 @@
 # Dockerfile untuk Frontend CodeIgniter 4
 
 # Stage 1: Build stage
-FROM php:8.2-apache as builder
+FROM php:8.2-apache AS builder
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -9,10 +9,14 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libssl-dev \
+    libicu-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install PHP intl extension (required by CodeIgniter 4.7+)
+RUN docker-php-ext-install intl
 
 # Set working directory
 WORKDIR /var/www/html
@@ -29,7 +33,9 @@ FROM php:8.2-apache
 # Install required PHP extensions
 RUN apt-get update && apt-get install -y \
     libssl-dev \
+    libicu-dev \
     && docker-php-ext-enable opcache \
+    && docker-php-ext-install intl \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache modules
