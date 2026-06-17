@@ -32,7 +32,20 @@ services:
     networks:
       - tim-network
 
-  # 3. SERVICE DATABASE (MySQL 8)
+  # 3. SERVICE LOGS (Product Lead - Monitoring Error Logs)
+  logs-monitor:
+    image: busybox
+    volumes:
+      # === [ BIND MOUNT ] ===
+      # Memetakan folder logs lokal agar Product Lead bisa lihat error logs langsung dari VS Code
+      - ./project/writable/logs:/logs:ro
+    command: tail -f /logs/log.log
+    networks:
+      - tim-network
+    depends_on:
+      - frontend-web
+
+  # 4. SERVICE DATABASE (MySQL 8)
   db-server:
     image: mysql:8                     # SUDAH DIGANTI MENJADI MYSQL SAKTI
     environment:
