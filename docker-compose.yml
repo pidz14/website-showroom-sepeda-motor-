@@ -38,8 +38,8 @@ services:
     volumes:
       # === [ BIND MOUNT ] ===
       # Memetakan folder logs lokal agar Product Lead bisa lihat error logs langsung dari VS Code
-      - ./project/writable/logs:/logs:ro
-    command: tail -f /logs/log.log
+      - ./project/writable/logs:/logs
+    command: tail -F /logs/application.log
     networks:
       - tim-network
     depends_on:
