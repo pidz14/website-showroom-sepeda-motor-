@@ -1,11 +1,14 @@
 version: '3.8'
 
 services:
-  # 1. SERVICE BACKEND (Python Uvicorn)
+  # 1. SERVICE BACKEND (Menggunakan Image GHCR)
   backend-api:
-    build:
-      context: .
-      dockerfile: ./api/app/Dockerfile
+    # --- SEBELUMNYA ---
+    # build:
+    #   context: .
+    #   dockerfile: ./api/app/Dockerfile
+    # --- SEKARANG (TUGAS PRODUCT LEAD) ---
+    image: ghcr.io/username-atau-org-kelompok/repo-be:v1.0.0
     ports:
       - "8000:8000"
     environment:
@@ -18,16 +21,19 @@ services:
     depends_on:
       - db-server
 
-  # 2. SERVICE FRONTEND (CodeIgniter 4)
+  # 2. SERVICE FRONTEND (Menggunakan Image GHCR)
   frontend-web:
-    build:
-      context: ./project
-      dockerfile: ./Dockerfile           # Mengarah ke Dockerfile CI4 di dalam folder project
+    # --- SEBELUMNYA ---
+    # build:
+    #   context: ./project
+    #   dockerfile: ./Dockerfile
+    # --- SEKARANG (TUGAS PRODUCT LEAD) ---
+    image: ghcr.io/username-atau-org-kelompok/repo-fe:v1.0.0
     ports:
       - "8080:80"
     volumes:
       # === [ BIND MOUNT ] ===
-      # Memetakan folder assets lokal ke folder target aset publik di dalam kontainer Apache
+      # Tetap dipertahankan untuk kebutuhan production assets / config eksternal jika ada
       - ./project/public/assets:/var/www/html/public/assets
     networks:
       - tim-network
@@ -37,7 +43,6 @@ services:
     image: busybox
     volumes:
       # === [ BIND MOUNT ] ===
-      # Memetakan folder logs lokal agar Product Lead bisa lihat error logs langsung dari VS Code
       - ./project/writable/logs:/logs
     command: tail -F /logs/application.log
     networks:
@@ -47,12 +52,11 @@ services:
 
   # 4. SERVICE DATABASE (MySQL 8)
   db-server:
-    image: mysql:8                     # SUDAH DIGANTI MENJADI MYSQL SAKTI
+    image: mysql:8
     environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD} # Password root MySQL
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     volumes:
       # === [ NAMED VOLUME ] ===
-      # Menyimpan data database MySQL tim secara aman di volume internal Docker
       - database-tim-volume:/var/lib/mysql
     networks:
       - tim-network
