@@ -17,15 +17,14 @@ services:
     restart: always
 
   db-prod:
-    image: postgres:15-alpine # Contoh jika backend menggunakan Postgres, sesuaikan dengan tim
-    container_name: postgres-production-db
+    image: mysql:8
+    container_name: mysql-production-db
     environment:
-      POSTGRES_USER: ${PROD_DB_USER}
-      POSTGRES_PASSWORD: ${PROD_DB_PASSWORD}
-      POSTGRES_DB: ${PROD_DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${PROD_DB_PASSWORD}  # Menggunakan password root MySQL dari .env
+      MYSQL_DATABASE: ${PROD_DB_NAME}           # Membuat database otomatis saat up
     volumes:
-      - db-production-data:/var/lib/postgresql/data # Bagian Backend Developer untuk volume
+      - database-tim-volume:/var/lib/mysql 
     restart: always
 
 volumes:
-  db-production-data: # Memastikan data user tidak hilang saat kontainer di-update
+  database-tim-volume:
