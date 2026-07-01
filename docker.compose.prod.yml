@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  web-app:
+    image: ghcr.io/nama-tim-anda/mvc-app:v1.0.0 # Merujuk pada image stabil tim
+    container_name: mvc-production-app
+    ports:
+      - "80:5000" # Mengarahkan port 80 (HTTP standar) ke port internal aplikasi
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=db-prod
+      - DB_USER=${PROD_DB_USER}       # Mengambil dari file .env produksi di server
+      - DB_PASSWORD=${PROD_DB_PASSWORD} # Mengambil dari file .env produksi di server
+      - DB_NAME=${PROD_DB_NAME}
+    depends_on:
+      - db-prod
+    restart: always
+
+  db-prod:
+    image: postgres:15-alpine # Contoh jika backend menggunakan Postgres, sesuaikan dengan tim
+    container_name: postgres-production-db
+    environment:
+      POSTGRES_USER: ${PROD_DB_USER}
+      POSTGRES_PASSWORD: ${PROD_DB_PASSWORD}
+      POSTGRES_DB: ${PROD_DB_NAME}
+    volumes:
+      - db-production-data:/var/lib/postgresql/data # Bagian Backend Developer untuk volume
+    restart: always
+
+volumes:
+  db-production-data: # Memastikan data user tidak hilang saat kontainer di-update
