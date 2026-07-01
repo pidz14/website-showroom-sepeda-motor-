@@ -7,7 +7,26 @@ use CodeIgniter\Config\BaseConfig;
 class App extends BaseConfig
 {
     /**
-     * --------------------------------------------------------------------------
+     * --------------------------------------------------------------------
+     * Dynamic Base URL
+     * --------------------------------------------------------------------
+     * Deteksi otomatis host dari request agar aplikasi bisa diakses
+     * via localhost maupun IP server tanpa masalah pathing.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (isset($_SERVER['HTTP_HOST'])) {
+            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                ? 'https'
+                : 'http';
+            $this->baseURL = $protocol . '://' . $_SERVER['HTTP_HOST'] . '/';
+        }
+    }
+
+    /**
+     * --------------------------------------------------------------------
      * Base Site URL
      * --------------------------------------------------------------------------
      *

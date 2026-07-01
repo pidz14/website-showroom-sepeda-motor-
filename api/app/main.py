@@ -1,4 +1,5 @@
 from fastapi import FastAPI, status
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 
@@ -6,6 +7,15 @@ app = FastAPI(
     title="Motor Showroom API",
     description="Backend API untuk manajemen motor dan test drive",
     version="1.0.0"
+)
+
+# --- CORS: izinkan browser dari frontend (port 8080) fetch ke API (port 8000) ---
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],          # Untuk simulasi/dev — izinkan semua origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # --- SKELETON SCHEMAS (Untuk Request Body) ---

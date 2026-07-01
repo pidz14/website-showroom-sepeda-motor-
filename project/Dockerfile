@@ -66,7 +66,8 @@ RUN if [ ! -f /var/www/html/public/.htaccess ]; then \
     fi
 
 # Environment variables
-ENV API_URL=http://localhost:5000
+ENV API_URL=http://backend-api:8000
+ENV API_URL_BROWSER=http://localhost:8000
 ENV CI_ENVIRONMENT=production
 
 # Expose port

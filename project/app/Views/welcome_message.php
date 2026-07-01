@@ -144,7 +144,9 @@
         <span>ShowroomKu</span>
         <span>Foto motor: Wikimedia Commons</span>
     </footer>
-
+    <script>
+        window.SHOWROOM_API_BASE_URL = "<?= getenv('API_URL') ?: 'http://localhost:8000' ?>";
+    </script>
     <script src="/assets/js/showroom.js?v=20260528"></script>
 </body>
 </html>

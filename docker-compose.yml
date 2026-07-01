@@ -25,12 +25,19 @@ services:
       dockerfile: ./Dockerfile           # Mengarah ke Dockerfile CI4 di dalam folder project
     ports:
       - "8080:80"
+    environment:
+      # URL untuk PHP server-side (di dalam Docker, pakai nama service)
+      - API_URL=http://backend-api:8000
+      # URL untuk JavaScript di browser (diakses dari luar Docker, pakai localhost)
+      - API_URL_BROWSER=http://localhost:8000
     volumes:
       # === [ BIND MOUNT ] ===
       # Memetakan folder assets lokal ke folder target aset publik di dalam kontainer Apache
       - ./project/public/assets:/var/www/html/public/assets
     networks:
       - tim-network
+    depends_on:
+      - backend-api
 
   # 3. SERVICE LOGS (Product Lead - Monitoring Error Logs)
   logs-monitor:
