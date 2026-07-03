@@ -1,0 +1,68 @@
+version: '3.8'
+
+# ============================================================
+# docker-compose.prod.yml
+# Konfigurasi untuk lingkungan PRODUKSI (simulasi)
+# Jalankan dengan: docker-compose -f docker-compose.prod.yml up --build -d
+# ============================================================
+
+services:
+
+  # 1. BACKEND API (Production Mode)
+  backend-api:
+    build:
+      context: .
+      dockerfile: ./api/app/Dockerfile
+    container_name: showroom-backend-prod
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db-prod
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD}
+    networks:
+      - prod-network
+    depends_on:
+      - db-prod
+    restart: always
+
+  # 2. FRONTEND WEB (Production Mode)
+  frontend-web:
+    build:
+      context: ./project
+      dockerfile: ./Dockerfile
+    container_name: showroom-frontend-prod
+    ports:
+      - "80:80"                      # Port 80 = HTTP standar (production)
+    environment:
+      - API_URL=http://backend-api:8000
+      - API_URL_BROWSER=http://localhost:8000
+      - CI_ENVIRONMENT=production
+    volumes:
+      - ./project/public/assets:/var/www/html/public/assets
+    networks:
+      - prod-network
+    depends_on:
+      - backend-api
+    restart: always
+
+  # 3. DATABASE (Production)
+  db-prod:
+    image: mysql:8
+    container_name: showroom-db-prod
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+    volumes:
+      - database-prod-volume:/var/lib/mysql
+    networks:
+      - prod-network
+    restart: always
+
+volumes:
+  database-prod-volume:
+
+networks:
+  prod-network:
+    driver: bridge
